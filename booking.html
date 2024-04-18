@@ -1,53 +1,146 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
+	<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Table Booking</title>
-    <style>
-        * {
-            box-sizing: border-box;
+</head>
+<body>
+	<div class="content">
+        <center>
+
+        <form method="post" action="" name="product" id="product">
+            <h1>Table Booking</h1>
+            <p style="font-size: 10px;">Royal Indian Restaurant</p>
+            <img class="logo" src="https://i.ibb.co/9nDvWgR/logo.png" alt="Restaurant Logo">
+            <form action="reservation_handler.php" method="post">
+    <label for="name">Name</label>
+    <input class="fil" type="text" name="name" placeholder="Enter Your Name" required>
+
+    <label for="email">Email</label>
+    <input class="fil" type="email" name="email" placeholder="Enter Your Email" required>
+
+    <label for="phone">Phone</label>
+    <input class="fil" type="tel" name="phone" placeholder="Enter Your Phone Number" required>
+
+    <label for="date">Date</label>
+    <input class="fil" type="date" name="date" required>
+
+
+   <label for="time">Time:</label>
+        <select id="time" name="time" required>
+            <!-- JavaScript will populate options here -->
+        </select>
+
+    <label for="party-size">Number of Guests</label>
+    <input class="fil" type="number" name="party_size" placeholder="Enter Party Size" required>
+
+    <label for="special-requests">Special Requests</label>
+    <textarea name="special_requests" id="special-requests" cols="30" rows="5" placeholder="Any Special Requests"></textarea>
+
+    <button type="submit">Submit Reservation</button>
+            
+            <p style="  font-size: 10px; color: rgb(33, 33, 33); margin: 6px;">Royal Indian Restaurant</p>
+
+        </form>
+        </center>
+      
+    </div>
+    <script>
+const scriptURL = 'https://script.google.com/macros/s/AKfycbz6ImVi2VKn6m6kPp3HnIUSoc4Sp4_5lcXoHwY8awEPyCFyDXxr-InoQ9NhsAH0qnCv/exec'
+        const form = document.forms['product']
+      
+        form.addEventListener('submit', e => {
+          e.preventDefault()
+          fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => alert("Thank you! your form is submitted successfully." ))
+            .then(() => {  window.location.reload(); })
+            .catch(error => console.error('Error!', error.message))
+        })
+	
+// Function to populate time dropdown with options every 15 minutes
+        function populateTimeDropdown() {
+            var select = document.getElementById("time");
+            var startHour = 6; // Starting hour (e.g., 6:00 PM)
+            var endHour = 22; // Ending hour (e.g., 10:00 PM)
+
+            for (var hour = startHour; hour <= endHour; hour++) {
+                for (var minute = 0; minute < 60; minute += 15) {
+                    var time = (hour % 12 || 12) + ":" + (minute < 10 ? '0' : '') + minute + " " + (hour < 12 ? "AM" : "PM");
+                    var option = document.createElement("option");
+                    option.text = time;
+                    option.value = time;
+                    select.add(option);
+                }
+            }
+        }
+
+        // Call the function when the page loads
+        window.onload = populateTimeDropdown;
+      </script>
+    <br>
+</body>
+<style>
+*{
             margin: 0;
             padding: 0;
+            font-family: Arial, Helvetica, sans-serif
         }
 
         body {
-            background-color: #98efe1;
-            font-family: Arial, Helvetica, sans-serif;
-        }
+    background: url('https://i.ibb.co/3y4mnG4/joshua-ang-Gf-Kq-XHU-PY-unsplash.jpg') center center fixed;
+    background-size: cover;
+    font-family: Arial, Helvetica, sans-serif;
+}
 
-        .content {
+.content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200vh;
+    background-color: rgba(255, 255, 255, 0.8); /* Adjust the last value (alpha) for transparency */
+}
+
+
+        form{
             display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-
-        form {
+			flex-direction: column;
+            position: relative;
+            overflow: hidden;
             background-color: #eeeeee;
-            padding: 20px;
+            padding: 20px 30px;
+            overflow: hidden;
+            width: 345px;
             border-radius: 15px;
-            border: 1px solid #8d8d8d;
-            width: 90%;
-            max-width: 400px;
+            top: 10px;
+            border: 1px solid rgb(141, 141, 141);
+            top: 30px;
+            position: relative;
+            
+            
+            
+
+        }
+        label{
+            /* left: -90px; */
+            text-align: left;
+            margin: 10px;
+            position: relative;
         }
 
-        label {
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-
-        input,
-        select,
-        textarea {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 10px;
+        input{
+            padding: 10px 15px;
+            width: 320px;
+            margin-bottom: 0px;
             border-radius: 6px;
-            border: 1px solid #777;
+            border: 1px solid rgb(119, 119, 119);
+            display: flex;
+            position: relative;
+           
+            
         }
 
-        button {
+        .click{
+            margin: 10px;
             background-color: rgb(4, 162, 4);
             color: #fff;
             border: none;
@@ -55,86 +148,31 @@
             font-weight: bold;
             padding: 10px 20px;
             border-radius: 6px;
+            margin: 5px;
+            width: 346px;
             cursor: pointer;
+
         }
 
-        button:hover {
+        .click:hover{
             background-color: rgb(5, 134, 5);
         }
 
-        .logo {
-            width: 100%;
-            max-width: 200px;
-            margin-bottom: 20px;
+        textarea{
+            padding: 10px 15px;
+            width: 322px;
+            height: 50px;
+            margin-bottom: 10px;
+            border-radius: 6px;
+            border: 1px solid rgb(122, 121, 121);
+            position: relative;
+
         }
 
-        .line {
+        .line{
             font-size: 10px;
             color: rgb(33, 33, 33);
-            margin-top: 10px;
-        }
-    </style>
-</head>
-<body>
-    <div class="content">
-        <form method="post" action="" name="product" id="product">
-            <h1 style="text-align: center;">Table Booking</h1>
-            <p style="font-size: 10px; text-align: center;">Royal Indian Restaurant</p>
-            <img class="logo" src="https://i.ibb.co/9nDvWgR/logo.png" alt="Restaurant Logo">
-            <label for="name">Name</label>
-            <input type="text" name="name" placeholder="Enter Your Name" required>
-
-            <label for="email">Email</label>
-            <input type="email" name="email" placeholder="Enter Your Email" required>
-
-            <label for="phone">Phone</label>
-            <input type="tel" name="phone" placeholder="Enter Your Phone Number" required>
-
-            <label for="date">Date</label>
-            <input type="date" name="date" required>
-
-            <label for="time">Time:</label>
-            <select name="time" required></select>
-
-            <label for="party-size">Number of Guests</label>
-            <input type="number" name="party_size" placeholder="Enter Party Size" required>
-
-            <label for="special-requests">Special Requests</label>
-            <textarea name="special_requests" id="special-requests" placeholder="Any Special Requests"></textarea>
-
-            <button type="submit">Submit Reservation</button>
-
-            <p class="line">Royal Indian Restaurant</p>
-        </form>
-    </div>
-
-    <script>
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbz6ImVi2VKn6m6kPp3HnIUSoc4Sp4_5lcXoHwY8awEPyCFyDXxr-InoQ9NhsAH0qnCv/exec';
-        const form = document.forms['product'];
-
-        form.addEventListener('submit', e => {
-            e.preventDefault();
-            fetch(scriptURL, { method: 'POST', body: new FormData(form) })
-                .then(response => alert("Thank you! your form is submitted successfully."))
-                .then(() => { window.location.reload(); })
-                .catch(error => console.error('Error!', error.message));
-        });
-
-        function populateTimeDropdown() {
-            const select = document.querySelector("select[name='time']");
-            const startHour = 6; // Starting hour (e.g., 6:00 PM)
-            const endHour = 22; // Ending hour (e.g., 10:00 PM)
-
-            for (let hour = startHour; hour <= endHour; hour++) {
-                for (let minute = 0; minute < 60; minute += 15) {
-                    const time = (hour % 12 || 12) + ":" + (minute < 10 ? '0' : '') + minute + " " + (hour < 12 ? "AM" : "PM");
-                    const option = new Option(time, time);
-                    select.add(option);
-                }
-            }
-        }
-
-        window.onload = populateTimeDropdown;
-    </script>
-</body>
+            margin: 6px;
+        }	
+</style>
 </html>
