@@ -52,7 +52,7 @@
         </div>
 
 	    <div id="cart-icon" style="position: fixed; top: 20px; right: 70px;">
-        <img src="https://www.iconsdb.com/icons/preview/red/shopping-cart-xxl.png" alt="Cart Icon" style="width: 50px; height: 50px; cursor: pointer;">
+        <img src="https://i.ibb.co/4ZShPrZ/food-stall-removebg-preview.png" alt="Cart Icon" style="width: 50px; height: 50px; cursor: pointer;">
         <span id="cart-count" style="background-color: red; color: white; border-radius: 50%; padding: 5px 10px; font-size: 18px; position: absolute; top: -10px; right: -10px; display: none;"></span>
     </div>
 
@@ -1191,13 +1191,7 @@ Leverage email marketing campaigns to nurture relationships with past guests, pr
 <div id="notification" style="display: none;">
     <p>Item added to cart!</p>
 </div>
-<div id="cart-popup" style="position: fixed; bottom: 0px; right: 20px; background-color: #fff; padding: 10px; border: 1px solid #ccc;">
-        <h2>Shopping Cart</h2>
-        <ul id="cart-items">
-            <!-- Cart items will be displayed here -->
-        </ul>
-        <button id="whatsapp-btn">Order Now</button>
-    </div>
+
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         const addToCartButtons = document.querySelectorAll('.dish-add-btn');
@@ -1276,6 +1270,9 @@ Leverage email marketing campaigns to nurture relationships with past guests, pr
 
         function toggleCartPopup() {
             cartPopup.style.display = cartPopup.style.display === 'block' ? 'none' : 'block';
+            const cartIconRect = cartIcon.getBoundingClientRect();
+            cartPopup.style.top = cartIconRect.bottom + 'px';
+            cartPopup.style.left = cartIconRect.left + 'px';
         }
     });
 </script>
