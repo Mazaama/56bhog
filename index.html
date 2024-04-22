@@ -1175,6 +1175,83 @@ Leverage email marketing campaigns to nurture relationships with past guests, pr
     <!-- custom js  -->
     <script src="main.js"></script>
 
+<div id="notification" style="display: none;">
+    <p>Item added to cart!</p>
+</div>
+
+<div id="cart-icon" style="position: fixed; bottom: 20px; right: 20px;">
+    <img src="https://www.iconsdb.com/icons/preview/red/shopping-cart-xxl.png" alt="Cart Icon" style="width: 50px; height: 50px; cursor: pointer;">
+</div>
+
+<div id="cart-popup" style="display: none; position: fixed; bottom: 80px; right: 20px; background-color: #fff; padding: 10px; border: 1px solid #ccc;">
+    <h2>Shopping Cart</h2>
+    <ul id="cart-items">
+        <!-- Cart items will be displayed here -->
+    </ul>
+    <button id="whatsapp-btn">Send to WhatsApp</button>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const addToCartButtons = document.querySelectorAll('.dish-add-btn');
+        const cartItems = [];
+        const notification = document.getElementById('notification');
+        const cartIcon = document.getElementById('cart-icon');
+        const cartPopup = document.getElementById('cart-popup');
+        const whatsappBtn = document.getElementById('whatsapp-btn');
+
+        addToCartButtons.forEach(function(button) {
+            button.addEventListener('click', function() {
+                const dishBox = this.closest('.dish-box');
+                const dishTitle = dishBox.querySelector('.h3-title').textContent;
+                const dishPrice = dishBox.querySelector('.dist-bottom-row li:first-child b').textContent;
+                const item = { title: dishTitle, price: dishPrice };
+                cartItems.push(item);
+                updateCart();
+                displayNotification();
+            });
+        });
+
+        function updateCart() {
+            const cartList = document.getElementById('cart-items');
+            cartList.innerHTML = '';
+            cartItems.forEach(function(item) {
+                const li = document.createElement('li');
+                li.textContent = item.title + ' - ' + item.price;
+                cartList.appendChild(li);
+            });
+        }
+
+        function displayNotification() {
+            notification.style.display = 'block';
+            setTimeout(function() {
+                notification.style.display = 'none';
+            }, 2000); // Hide notification after 2 seconds
+        }
+
+        cartIcon.addEventListener('click', function() {
+            toggleCartPopup();
+        });
+
+        whatsappBtn.addEventListener('click', function() {
+            sendCartToWhatsApp();
+        });
+
+        function sendCartToWhatsApp() {
+            let message = "Shopping Cart:\n";
+            cartItems.forEach(function(item) {
+                message += "- " + item.title + " - " + item.price + "\n";
+            });
+            const whatsappLink = "https://wa.me/918850856825?text=" + encodeURIComponent(message);
+            window.open(whatsappLink);
+        }
+
+        function toggleCartPopup() {
+            cartPopup.style.display = cartPopup.style.display === 'block' ? 'none' : 'block';
+        }
+    });
+</script>
+
 </body>
 
 </html>
