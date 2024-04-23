@@ -22,7 +22,7 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            background-color: rgba(255, 255, 255, 0.8);
+            background-color: rgba(255, 255, 0, 0.6); /* Darker yellow background */
             padding: 20px;
         }
 
@@ -62,6 +62,59 @@
 
         button:hover {
             background-color: rgb(5, 134, 5);
+        }
+
+        /* Styling for the pop-up message */
+        .popup-message {
+            display: none;
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(255, 255, 0, 0.8); /* Darker yellow background */
+            color: #004080; /* Blue text color */
+            padding: 20px;
+            border-radius: 10px;
+            font-size: 16px;
+            text-align: center;
+            z-index: 9999;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        /* Keyframes for the animation */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        /* Logo and name styling */
+        .restaurant-info {
+            margin-bottom: 15px;
+        }
+
+        .restaurant-info img {
+            max-width: 170px; /* 70% larger */
+            margin-bottom: 10px;
+        }
+
+        .popup-message p {
+            font-weight: bold; /* Bold text like h3 */
+            margin-bottom: 10px; /* Additional margin */
+        }
+
+        /* Close button */
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+            color: #004080; /* Blue text color */
+            font-size: 20px;
         }
 
         @media only screen and (max-width: 600px) {
@@ -112,19 +165,44 @@
     </form>
 </div>
 
+<!-- Pop-up message -->
+<div class="popup-message" id="popupMessage">
+    <span class="close-btn" onclick="closePopup()">&times;</span> <!-- Close button -->
+    <div class="restaurant-info">
+        <img src="https://i.ibb.co/9nDvWgR/logo.png" alt="Restaurant Logo">
+        <p style="font-size: 24px;">Royal Indian Restaurant</p> <!-- Larger font size -->
+    </div>
+    <p style="font-size: 18px;">Thank you for booking with us! We're excited to welcome you for a wonderful dining experience.</p> <!-- Larger font size -->
+    <p style="font-size: 16px;">You will get more updates on WhatsApp.</p> <!-- New line -->
+</div>
+
 <script>
     const scriptURL = 'https://script.google.com/macros/s/AKfycbz6ImVi2VKn6m6kPp3HnIUSoc4Sp4_5lcXoHwY8awEPyCFyDXxr-InoQ9NhsAH0qnCv/exec';
     const form = document.forms['product'];
+    const popupMessage = document.getElementById('popupMessage');
 
     form.addEventListener('submit', e => {
         e.preventDefault();
         fetch(scriptURL, { method: 'POST', body: new FormData(form) })
-            .then(response => alert("Thank you! Your form has been submitted successfully."))
-            .then(() => {
-                window.location.reload();
+            .then(response => {
+                if (response.ok) {
+                    // Display pop-up message
+                    popupMessage.style.display = 'block';
+                } else {
+                    throw new Error('Network response was not ok.');
+                }
             })
             .catch(error => console.error('Error!', error.message));
     });
+
+    // Close pop-up message
+    function closePopup() {
+        popupMessage.style.display = 'none';
+        // Reload page
+        setTimeout(() => {
+            window.location.reload();
+        }, 500); // Reload page after 0.5 seconds
+    }
 
     // Function to populate time dropdown with options every 15 minutes
     function populateTimeDropdown() {
