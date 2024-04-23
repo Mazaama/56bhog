@@ -50,7 +50,7 @@
                 </div>
             </div>
         </div>
-	    <style>
+	   <style>
         /* Your CSS styles here */
         .cart-item {
             border: 1px solid #ccc;
@@ -73,6 +73,7 @@
 
         .quantity-label {
             margin-right: 5px;
+            display: none; /* Hide the quantity label */
         }
 
         .cart-item-buttons {
@@ -89,15 +90,55 @@
         .delete-button {
             color: red; /* Set the color of the delete button */
         }
+
+        .inc-button {
+            color: green; /* Set the color of the increment button */
+        }
+
+        .dec-button {
+            color: green; /* Set the color of the decrement button */
+        }
+
+        .cart-popup {
+            position: fixed;
+            background-color: #fff;
+            padding: 20px;
+            border: 2px solid #FFD700;
+            display: none;
+            max-height: 80vh; /* Limit the height of the cart popup */
+            overflow-y: auto;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .cart-popup-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .close-button {
+            color: red;
+            background: none;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            padding: 0;
+        }
     </style>
+
     <div id="cart-icon" style="position: fixed; top: 20px; right: 70px;">
         <img src="https://i.ibb.co/4ZShPrZ/food-stall-removebg-preview.png" alt="Cart Icon" style="width: 50px; height: 50px; cursor: pointer;">
         <span id="cart-count" style="background-color: red; color: white; border-radius: 50%; padding: 5px 10px; font-size: 18px; position: absolute; top: -10px; right: -10px; display: none;"></span>
     </div>
 
 
-    <div id="cart-popup" style="position: fixed; background-color: #fff; padding: 20px; border: 2px solid #FFD700; display: none; overflow-y: auto; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);">
-        <h3 style="color: #FFD700; text-align: center; font-size: 24px; margin-bottom: 20px;">🎉 Shopping Cart 🎉</h3>
+    <div id="cart-popup" class="cart-popup">
+        <div class="cart-popup-header">
+            <h3 style="color: #FFD700; text-align: center; font-size: 24px; margin-bottom: 20px;">🎉 Shopping Cart 🎉</h3>
+            <button id="close-cart-btn" class="close-button">X</button>
+        </div>
         <ul id="cart-items" style="list-style: none; padding: 0; margin: 0;">
             <!-- Cart items will be displayed here -->
         </ul>
@@ -127,6 +168,7 @@
             }
         }
     </style>
+
     </header>
     <!-- header ends  -->
 
@@ -1251,7 +1293,8 @@ Leverage email marketing campaigns to nurture relationships with past guests, pr
     <script src="assets/js/smooth-scroll.js"></script>
     <!-- custom js  -->
     <script src="main.js"></script>
-	<script>
+	
+<script>
     document.addEventListener("DOMContentLoaded", function() {
         const addToCartButtons = document.querySelectorAll('.dish-add-btn');
         const cartItems = [];
@@ -1260,12 +1303,13 @@ Leverage email marketing campaigns to nurture relationships with past guests, pr
         const cartPopup = document.getElementById('cart-popup');
         const whatsappBtn = document.getElementById('whatsapp-btn');
         const cartCount = document.getElementById('cart-count');
+        const closeCartBtn = document.getElementById('close-cart-btn');
 
         addToCartButtons.forEach(function(button) {
             button.addEventListener('click', function() {
                 const dishBox = this.closest('.dish-box');
                 const dishTitle = dishBox.querySelector('.h3-title').textContent;
-                const dishPrice = dishBox.querySelector('.dist-bottom-row li:first-child b').textContent;
+                const dishPrice = parseFloat(dishBox.querySelector('.dist-bottom-row li:first-child b').textContent.replace('$', ''));
                 const item = { id: cartItems.length + 1, title: dishTitle, price: dishPrice, quantity: 1 };
                 cartItems.push(item);
                 updateCart();
@@ -1281,27 +1325,28 @@ Leverage email marketing campaigns to nurture relationships with past guests, pr
                 li.classList.add('cart-item');
                 const itemName = document.createElement('span');
                 itemName.classList.add('cart-item-name');
-                itemName.textContent = item.title + ' - ' + item.price;
+                itemName.textContent = item.title;
 
                 const quantitySpan = document.createElement('span');
                 quantitySpan.classList.add('cart-item-quantity');
-                const quantityLabel = document.createElement('span');
-                quantityLabel.classList.add('quantity-label');
-                quantityLabel.textContent = 'Quantity:';
+                const quantity = document.createElement('span');
+                quantity.textContent = item.quantity;
                 const decButton = document.createElement('button');
-                decButton.classList.add('cart-item-button', 'dec-button');
                 decButton.textContent = '-';
+                decButton.classList.add('cart-item-button', 'dec-button');
                 decButton.addEventListener('click', function() {
                     decreaseQuantity(item.id);
                 });
-                const quantity = document.createElement('span');
-                quantity.textContent = item.quantity;
                 const incButton = document.createElement('button');
-                incButton.classList.add('cart-item-button', 'inc-button');
                 incButton.textContent = '+';
+                incButton.classList.add('cart-item-button', 'inc-button');
                 incButton.addEventListener('click', function() {
                     increaseQuantity(item.id);
                 });
+
+                const priceSpan = document.createElement('span');
+                priceSpan.textContent = '$' + (item.price * item.quantity).toFixed(2); // Calculate and display price
+                priceSpan.classList.add('cart-item-price');
 
                 const deleteButton = document.createElement('button');
                 deleteButton.textContent = 'X';
@@ -1310,13 +1355,13 @@ Leverage email marketing campaigns to nurture relationships with past guests, pr
                     removeItemFromCart(item.id);
                 });
 
-                quantitySpan.appendChild(quantityLabel);
                 quantitySpan.appendChild(decButton);
                 quantitySpan.appendChild(quantity);
                 quantitySpan.appendChild(incButton);
 
                 li.appendChild(itemName);
                 li.appendChild(quantitySpan);
+                li.appendChild(priceSpan);
                 li.appendChild(deleteButton);
 
                 cartList.appendChild(li);
@@ -1368,10 +1413,15 @@ Leverage email marketing campaigns to nurture relationships with past guests, pr
             sendCartToWhatsApp();
         });
 
+        closeCartBtn.addEventListener('click', function() {
+            closeCartPopup();
+        });
+
         function sendCartToWhatsApp() {
             let message = "Shopping Cart:\n";
             cartItems.forEach(function(item) {
-                message += "- " + item.title + ' - ' + item.price + ' - Quantity: ' + item.quantity + "\n";
+                const totalPrice = (item.price * item.quantity).toFixed(2); // Calculate total price
+                message += `- ${item.title} - Quantity: ${item.quantity} - $${totalPrice}\n`;
             });
             const whatsappLink = "https://wa.me/918850856825?text=" + encodeURIComponent(message);
             window.open(whatsappLink);
@@ -1379,12 +1429,29 @@ Leverage email marketing campaigns to nurture relationships with past guests, pr
 
         function toggleCartPopup() {
             cartPopup.style.display = cartPopup.style.display === 'block' ? 'none' : 'block';
-            const cartIconRect = cartIcon.getBoundingClientRect();
-            const centerX = window.innerWidth / 2 - cartPopup.offsetWidth / 2;
-            const centerY = window.innerHeight / 2 - cartPopup.offsetHeight / 2;
-            cartPopup.style.top = centerY + 'px';
-            cartPopup.style.left = centerX + 'px';
+            centerCartPopup();
         }
+
+        function closeCartPopup() {
+            cartPopup.style.display = 'none';
+        }
+
+        function centerCartPopup() {
+            const windowHeight = window.innerHeight;
+            const windowWidth = window.innerWidth;
+            const cartHeight = cartPopup.offsetHeight;
+            const cartWidth = cartPopup.offsetWidth;
+            const topPosition = (windowHeight - cartHeight) / 2;
+            const leftPosition = (windowWidth - cartWidth) / 2;
+            cartPopup.style.top = topPosition + 'px';
+            cartPopup.style.left = leftPosition + 'px';
+        }
+
+        window.addEventListener('resize', function() {
+            if (cartPopup.style.display === 'block') {
+                centerCartPopup();
+            }
+        });
     });
 </script>
 
