@@ -51,42 +51,88 @@
             </div>
         </div>
 
-	   <div id="cart-icon" style="position: fixed; top: 20px; right: 20px;">
+	   <style>
+        /* Your CSS styles here */
+        .cart-item {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-radius: 5px;
+        }
+
+        .cart-item-name {
+            flex-grow: 1;
+        }
+
+        .cart-item-quantity {
+            display: flex;
+            align-items: center;
+        }
+
+        .quantity-label {
+            margin-right: 5px;
+        }
+
+        .cart-item-buttons {
+            display: flex;
+            align-items: center;
+        }
+
+        .cart-item-button {
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+        }
+
+        .delete-button {
+            color: red; /* Set the color of the delete button */
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div id="cart-icon" style="position: fixed; top: 20px; right: 70px;">
         <img src="https://i.ibb.co/4ZShPrZ/food-stall-removebg-preview.png" alt="Cart Icon" style="width: 50px; height: 50px; cursor: pointer;">
         <span id="cart-count" style="background-color: red; color: white; border-radius: 50%; padding: 5px 10px; font-size: 18px; position: absolute; top: -10px; right: -10px; display: none;"></span>
     </div>
 
 
-<div id="cart-popup" style="position: fixed; background-color: #fff; padding: 20px; border: 2px solid #FFD700; display: none; width: 300px; max-height: 400px; overflow-y: auto; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);">
-    <h3 style="color: #FFD700; text-align: center; font-size: 24px; margin-bottom: 20px;">🎉 Shopping Cart 🎉</h3>
-    <ul id="cart-items" style="list-style: none; padding: 0; margin: 0;">
-        <!-- Cart items will be displayed here -->
-    </ul>
-    
+    <div id="cart-popup" style="position: fixed; background-color: #fff; padding: 20px; border: 2px solid #FFD700; display: none; width: 300px; max-height: 400px; overflow-y: auto; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);">
+        <h3 style="color: #FFD700; text-align: center; font-size: 24px; margin-bottom: 20px;">🎉 Shopping Cart 🎉</h3>
+        <ul id="cart-items" style="list-style: none; padding: 0; margin: 0;">
+            <!-- Cart items will be displayed here -->
+        </ul>
+        
         <button id="whatsapp-btn" style="background: linear-gradient(to right, #ff9966, #ff5e62); color: #ffffff; border-radius: 20px; padding: 10px 20px; border: none; font-size: 16px; cursor: pointer;">Order Now</button>
     </div>
-	    <div id="notification" style="display: none; position: fixed; bottom: 20px; right: 20px; background: linear-gradient(to right, #4CAF50, #388E3C); color: #fff; padding: 15px 20px; border-radius: 20px; font-size: 20px; font-family: 'Roboto', sans-serif; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); animation: bounceInRight 0.5s;">
-    <p style="margin: 0;">Added</p>
-</div>
+    
+    <div id="notification" style="display: none; position: fixed; bottom: 20px; right: 20px; background: linear-gradient(to right, #4CAF50, #388E3C); color: #fff; padding: 15px 20px; border-radius: 20px; font-size: 20px; font-family: 'Roboto', sans-serif; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); animation: bounceInRight 0.5s;">
+        <p style="margin: 0;">Added</p>
+    </div>
 
-<style>
-    @keyframes bounceInRight {
-        from {
-            opacity: 0;
-            transform: translateX(100%);
+    <style>
+        @keyframes bounceInRight {
+            from {
+                opacity: 0;
+                transform: translateX(100%);
+            }
+            60% {
+                opacity: 1;
+                transform: translateX(-20px);
+            }
+            80% {
+                transform: translateX(10px);
+            }
+            to {
+                transform: translateX(0);
+            }
         }
-        60% {
-            opacity: 1;
-            transform: translateX(-20px);
-        }
-        80% {
-            transform: translateX(10px);
-        }
-        to {
-            transform: translateX(0);
-        }
-    }
-</style>
+    </style>
     </header>
     <!-- header ends  -->
 
@@ -1238,40 +1284,47 @@ Leverage email marketing campaigns to nurture relationships with past guests, pr
             cartList.innerHTML = '';
             cartItems.forEach(function(item) {
                 const li = document.createElement('li');
-                const deleteButton = document.createElement('button');
-                deleteButton.textContent = 'X';
-                deleteButton.style.marginLeft = '10px';
-                deleteButton.style.backgroundColor = 'transparent';
-                deleteButton.style.border = 'none';
-                deleteButton.style.cursor = 'pointer';
-                deleteButton.addEventListener('click', function() {
-                    removeItemFromCart(item.id);
-                });
+                li.classList.add('cart-item');
+                const itemName = document.createElement('span');
+                itemName.classList.add('cart-item-name');
+                itemName.textContent = item.title + ' - ' + item.price;
 
+                const quantitySpan = document.createElement('span');
+                quantitySpan.classList.add('cart-item-quantity');
+                const quantityLabel = document.createElement('span');
+                quantityLabel.classList.add('quantity-label');
+                quantityLabel.textContent = 'Quantity:';
+                const decButton = document.createElement('button');
+                decButton.classList.add('cart-item-button', 'dec-button');
+                decButton.textContent = '-';
+                decButton.addEventListener('click', function() {
+                    decreaseQuantity(item.id);
+                });
+                const quantity = document.createElement('span');
+                quantity.textContent = item.quantity;
                 const incButton = document.createElement('button');
+                incButton.classList.add('cart-item-button', 'inc-button');
                 incButton.textContent = '+';
-                incButton.style.marginLeft = '10px';
-                incButton.style.backgroundColor = 'transparent';
-                incButton.style.border = 'none';
-                incButton.style.cursor = 'pointer';
                 incButton.addEventListener('click', function() {
                     increaseQuantity(item.id);
                 });
 
-                const decButton = document.createElement('button');
-                decButton.textContent = '-';
-                decButton.style.marginLeft = '5px';
-                decButton.style.backgroundColor = 'transparent';
-                decButton.style.border = 'none';
-                decButton.style.cursor = 'pointer';
-                decButton.addEventListener('click', function() {
-                    decreaseQuantity(item.id);
+                const deleteButton = document.createElement('button');
+                deleteButton.textContent = 'X';
+                deleteButton.classList.add('cart-item-button', 'delete-button');
+                deleteButton.addEventListener('click', function() {
+                    removeItemFromCart(item.id);
                 });
 
-                li.textContent = item.title + ' - ' + item.price + ' - Quantity: ' + item.quantity;
+                quantitySpan.appendChild(quantityLabel);
+                quantitySpan.appendChild(decButton);
+                quantitySpan.appendChild(quantity);
+                quantitySpan.appendChild(incButton);
+
+                li.appendChild(itemName);
+                li.appendChild(quantitySpan);
                 li.appendChild(deleteButton);
-                li.appendChild(incButton);
-                li.appendChild(decButton);
+
                 cartList.appendChild(li);
             });
             updateCartCount();
