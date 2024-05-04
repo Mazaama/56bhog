@@ -17,9 +17,8 @@
     <link rel="stylesheet" href="assets/css/jquery.fancybox.min.css">
     <!-- custom css  -->
     <link rel="stylesheet" href="style.css">
-</head>
 
-<style>
+    <style>
         /* Your CSS styles here */
         .cart-item {
             border: 1px solid #ccc;
@@ -95,30 +94,7 @@
             cursor: pointer;
             padding: 0;
         }
-    </style>
-<div id="cart-icon" style="position: fixed; top: 20px; right: 70px;">
-        <img src="https://i.ibb.co/4ZShPrZ/food-stall-removebg-preview.png" alt="Cart Icon" style="width: 50px; height: 50px; cursor: pointer;">
-        <span id="cart-count" style="background-color: red; color: white; border-radius: 50%; padding: 5px 10px; font-size: 18px; position: absolute; top: -10px; right: -10px; display: none;"></span>
-    </div>
 
-
-    <div id="cart-popup" class="cart-popup">
-        <div class="cart-popup-header">
-            <h3 style="color: #FFD700; text-align: center; font-size: 24px; margin-bottom: 20px;">🎉 Shopping Cart 🎉</h3>
-            <button id="close-cart-btn" class="close-button">X</button>
-        </div>
-        <ul id="cart-items" style="list-style: none; padding: 0; margin: 0;">
-            <!-- Cart items will be displayed here -->
-        </ul>
-        
-        <button id="whatsapp-btn" style="background: linear-gradient(to right, #ff9966, #ff5e62); color: #ffffff; border-radius: 20px; padding: 10px 20px; border: none; font-size: 16px; cursor: pointer;">Order Now</button>
-    </div>
-    
-    <div id="notification" style="display: none; position: fixed; bottom: 20px; right: 20px; background: linear-gradient(to right, #4CAF50, #388E3C); color: #fff; padding: 15px 20px; border-radius: 20px; font-size: 20px; font-family: 'Roboto', sans-serif; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); animation: bounceInRight 0.5s;">
-        <p style="margin: 0;">Added</p>
-    </div>
-
-    <style>
         @keyframes bounceInRight {
             from {
                 opacity: 0;
@@ -136,303 +112,120 @@
             }
         }
     </style>
+</head>
 
-    </header>
-    <!-- header ends  -->
-            <section style="background-image: url(assets/images/menu-bg.png);"
-                class="our-menu section bg-light repeat-img" id="menu">
-                <div class="sec-wp">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="sec-title text-center mb-5">
-                                    <p class="sec-sub-title mb-3">our menu</p>
-                                    <h2 class="h2-title">wake up early, <span>eat fresh & healthy</span></h2>
-                                    <div class="sec-title-shape mb-4">
-                                        <img src="assets/images/title-shape.svg" alt="">
-                                    </div>
+<body>
+    <div id="cart-icon" style="position: fixed; top: 20px; right: 70px;">
+        <img src="https://i.ibb.co/4ZShPrZ/food-stall-removebg-preview.png" alt="Cart Icon" style="width: 50px; height: 50px; cursor: pointer;">
+        <span id="cart-count" style="background-color: red; color: white; border-radius: 50%; padding: 5px 10px; font-size: 18px; position: absolute; top: -10px; right: -10px; display: none;"></span>
+    </div>
+
+
+    <div id="cart-popup" class="cart-popup">
+        <div class="cart-popup-header">
+            <h3 style="color: #FFD700; text-align: center; font-size: 24px; margin-bottom: 20px;">🎉 Shopping Cart 🎉</h3>
+            <button id="close-cart-btn" class="close-button">X</button>
+        </div>
+        <ul id="cart-items" style="list-style: none; padding: 0; margin: 0;">
+            <!-- Cart items will be displayed here -->
+        </ul>
+
+        <button id="whatsapp-btn" style="background: linear-gradient(to right, #ff9966, #ff5e62); color: #ffffff; border-radius: 20px; padding: 10px 20px; border: none; font-size: 16px; cursor: pointer;">Order Now</button>
+    </div>
+
+    <div id="notification" style="display: none; position: fixed; bottom: 20px; right: 20px; background: linear-gradient(to right, #4CAF50, #388E3C); color: #fff; padding: 15px 20px; border-radius: 20px; font-size: 20px; font-family: 'Roboto', sans-serif; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); animation: bounceInRight 0.5s;">
+        <p style="margin: 0;">Added</p>
+    </div>
+
+    <!-- section starts  -->
+    <section style="background-image: url(assets/images/menu-bg.png);" class="our-menu section bg-light repeat-img" id="menu">
+        <div class="sec-wp">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="sec-title text-center mb-5">
+                            <p class="sec-sub-title mb-3">our menu</p>
+                            <h2 class="h2-title">wake up early, <span>eat fresh & healthy</span></h2>
+                            <div class="sec-title-shape mb-4">
+                                <img src="assets/images/title-shape.svg" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- menu tab -->
+                <div class="menu-tab-wp">
+                    <div class="row">
+                        <div class="col-lg-12 m-auto">
+                            <div class="menu-tab text-center">
+                                <ul class="filters">
+                                    <div class="filter-active"></div>
+                                    <li class="filter" data-filter=".all, .breakfast, .lunch, .dinner">
+                                        <img src="assets/images/menu-1.png" alt="">
+                                        All
+                                    </li>
+                                    <li class="filter" data-filter=".breakfast">
+                                        <img src="assets/images/menu-2.png" alt="">
+                                        Breakfast
+                                    </li>
+                                    <li class="filter" data-filter=".lunch">
+                                        <img src="assets/images/menu-3.png" alt="">
+                                        Lunch
+                                    </li>
+                                    <li class="filter" data-filter=".dinner">
+                                        <img src="assets/images/menu-4.png" alt="">
+                                        Dinner
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- menu list -->
+                <div class="menu-list-wp">
+                    <div class="row">
+                        <!-- Single Menu -->
+                        <div class="col-lg-4 col-md-6 mix all breakfast">
+                            <div class="single-menu">
+                                <img src="assets/images/menu-1.jpg" alt="">
+                                <div class="menu-content">
+                                    <h4 class="menu-title">Mixed Fruit Jam</h4>
+                                    <span class="menu-price">$5.00</span>
+                                    <p class="menu-text">Homemade mixed fruit jam served with toast.</p>
+                                    <button class="add-to-cart" data-name="Mixed Fruit Jam" data-price="5.00">Add to Cart</button>
                                 </div>
                             </div>
                         </div>
-                        <div class="menu-tab-wp">
-                            <div class="row">
-                                <div class="col-lg-12 m-auto">
-                                    <div class="menu-tab text-center">
-                                        <ul class="filters">
-                                            <div class="filter-active"></div>
-                                            <li class="filter" data-filter=".all, .breakfast, .lunch, .dinner">
-                                                <img src="assets/images/menu-1.png" alt="">
-                                                All
-                                            </li>
-                                            <li class="filter" data-filter=".breakfast">
-                                                <img src="assets/images/menu-2.png" alt="">
-                                                Breakfast
-                                            </li>
-                                            <li class="filter" data-filter=".lunch">
-                                                <img src="assets/images/menu-3.png" alt="">
-                                                Lunch
-                                            </li>
-                                            <li class="filter" data-filter=".dinner">
-                                                <img src="assets/images/menu-4.png" alt="">
-                                                Dinner
-                                            </li>
-                                        </ul>
-                                    </div>
+                        <!-- Single Menu -->
+                        <div class="col-lg-4 col-md-6 mix all lunch">
+                            <div class="single-menu">
+                                <img src="assets/images/menu-2.jpg" alt="">
+                                <div class="menu-content">
+                                    <h4 class="menu-title">Chicken Tikka Masala</h4>
+                                    <span class="menu-price">$12.00</span>
+                                    <p class="menu-text">Grilled chicken served with a spicy sauce.</p>
+                                    <button class="add-to-cart" data-name="Chicken Tikka Masala" data-price="12.00">Add to Cart</button>
                                 </div>
                             </div>
                         </div>
-                        <div class="menu-list-row">
-                            <div class="row g-xxl-5 bydefault_show" id="menu-dish">
-                                <div class="col-lg-4 col-sm-6 dish-box-wp breakfast" data-cat="breakfast">
-                                    <div class="dish-box text-center">
-                                        <div class="dist-img">
-                                            <img src="assets/images/dish/1.png" alt="">
-                                        </div>
-                                        <div class="dish-rating">
-                                            5
-                                            <i class="uil uil-star"></i>
-                                        </div>
-                                        <div class="dish-title">
-                                            <h3 class="h3-title">Fresh Chicken Veggies</h3>
-                                            <p>120 calories</p>
-                                        </div>
-                                        <div class="dish-info">
-                                            <ul>
-                                                <li>
-                                                    <p>Type</p>
-                                                    <b>Non Veg</b>
-                                                </li>
-                                                <li>
-                                                    <p>Persons</p>
-                                                    <b>2</b>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="dist-bottom-row">
-                                            <ul>
-                                                <li>
-                                                    <b>$ 499</b>
-                                                </li>
-                                                <li>
-                                                    <button class="dish-add-btn">
-                                                        <i class="uil uil-plus"></i>
-                                                    </button>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- 2 -->
-                                <div class="col-lg-4 col-sm-6 dish-box-wp breakfast" data-cat="breakfast">
-                                    <div class="dish-box text-center">
-                                        <div class="dist-img">
-                                            <img src="assets/images/dish/2.png" alt="">
-                                        </div>
-                                        <div class="dish-rating">
-                                            4.3
-                                            <i class="uil uil-star"></i>
-                                        </div>
-                                        <div class="dish-title">
-                                            <h3 class="h3-title">Grilled Chicken</h3>
-                                            <p>80 calories</p>
-                                        </div>
-                                        <div class="dish-info">
-                                            <ul>
-                                                <li>
-                                                    <p>Type</p>
-                                                    <b>Non Veg</b>
-                                                </li>
-                                                <li>
-                                                    <p>Persons</p>
-                                                    <b>1</b>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="dist-bottom-row">
-                                            <ul>
-                                                <li>
-                                                    <b>$ 359</b>
-                                                </li>
-                                                <li>
-                                                    <button class="dish-add-btn">
-                                                        <i class="uil uil-plus"></i>
-                                                    </button>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- 3 -->
-                                <div class="col-lg-4 col-sm-6 dish-box-wp lunch" data-cat="lunch">
-                                    <div class="dish-box text-center">
-                                        <div class="dist-img">
-                                            <img src="assets/images/dish/3.png" alt="">
-                                        </div>
-                                        <div class="dish-rating">
-                                            4
-                                            <i class="uil uil-star"></i>
-                                        </div>
-                                        <div class="dish-title">
-                                            <h3 class="h3-title">Panner Noodles</h3>
-                                            <p>100 calories</p>
-                                        </div>
-                                        <div class="dish-info">
-                                            <ul>
-                                                <li>
-                                                    <p>Type</p>
-                                                    <b>Veg</b>
-                                                </li>
-                                                <li>
-                                                    <p>Persons</p>
-                                                    <b>2</b>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="dist-bottom-row">
-                                            <ul>
-                                                <li>
-                                                    <b>$ 149</b>
-                                                </li>
-                                                <li>
-                                                    <button class="dish-add-btn">
-                                                        <i class="uil uil-plus"></i>
-                                                    </button>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- 4 -->
-                                <div class="col-lg-4 col-sm-6 dish-box-wp lunch" data-cat="lunch">
-                                    <div class="dish-box text-center">
-                                        <div class="dist-img">
-                                            <img src="assets/images/dish/4.png" alt="">
-                                        </div>
-                                        <div class="dish-rating">
-                                            4.5
-                                            <i class="uil uil-star"></i>
-                                        </div>
-                                        <div class="dish-title">
-                                            <h3 class="h3-title">Chicken Noodles</h3>
-                                            <p>120 calories</p>
-                                        </div>
-                                        <div class="dish-info">
-                                            <ul>
-                                                <li>
-                                                    <p>Type</p>
-                                                    <b>Non Veg</b>
-                                                </li>
-                                                <li>
-                                                    <p>Persons</p>
-                                                    <b>2</b>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="dist-bottom-row">
-                                            <ul>
-                                                <li>
-                                                    <b>$ 379</b>
-                                                </li>
-                                                <li>
-                                                    <button class="dish-add-btn">
-                                                        <i class="uil uil-plus"></i>
-                                                    </button>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- 5 -->
-                                <div class="col-lg-4 col-sm-6 dish-box-wp dinner" data-cat="dinner">
-                                    <div class="dish-box text-center">
-                                        <div class="dist-img">
-                                            <img src="assets/images/dish/5.png" alt="">
-                                        </div>
-                                        <div class="dish-rating">
-                                            5
-                                            <i class="uil uil-star"></i>
-                                        </div>
-                                        <div class="dish-title">
-                                            <h3 class="h3-title">Bread Boiled Egg</h3>
-                                            <p>120 calories</p>
-                                        </div>
-                                        <div class="dish-info">
-                                            <ul>
-                                                <li>
-                                                    <p>Type</p>
-                                                    <b>Non Veg</b>
-                                                </li>
-                                                <li>
-                                                    <p>Persons</p>
-                                                    <b>2</b>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="dist-bottom-row">
-                                            <ul>
-                                                <li>
-                                                    <b>$ 99</b>
-                                                </li>
-                                                <li>
-                                                    <button class="dish-add-btn">
-                                                        <i class="uil uil-plus"></i>
-                                                    </button>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- 6 -->
-                                <div class="col-lg-4 col-sm-6 dish-box-wp dinner" data-cat="dinner">
-                                    <div class="dish-box text-center">
-                                        <div class="dist-img">
-                                            <img src="assets/images/dish/6.png" alt="">
-                                        </div>
-                                        <div class="dish-rating">
-                                            5
-                                            <i class="uil uil-star"></i>
-                                        </div>
-                                        <div class="dish-title">
-                                            <h3 class="h3-title">Immunity Dish</h3>
-                                            <p>120 calories</p>
-                                        </div>
-                                        <div class="dish-info">
-                                            <ul>
-                                                <li>
-                                                    <p>Type</p>
-                                                    <b>Veg</b>
-                                                </li>
-                                                <li>
-                                                    <p>Persons</p>
-                                                    <b>2</b>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="dist-bottom-row">
-                                            <ul>
-                                                <li>
-                                                    <b>$ 159</b>
-                                                </li>
-                                                <li>
-                                                    <button class="dish-add-btn">
-                                                        <i class="uil uil-plus"></i>
-                                                    </button>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
+                        <!-- Single Menu -->
+                        <div class="col-lg-4 col-md-6 mix all dinner">
+                            <div class="single-menu">
+                                <img src="assets/images/menu-3.jpg" alt="">
+                                <div class="menu-content">
+                                    <h4 class="menu-title">Vegetable Biryani</h4>
+                                    <span class="menu-price">$10.00</span>
+                                    <p class="menu-text">Basmati rice cooked with mixed vegetables and spices.</p>
+                                    <button class="add-to-cart" data-name="Vegetable Biryani" data-price="10.00">Add to Cart</button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </section>
-            
-            
-            
+            </div>
+        </div>
+    </section>
+    <!-- section ends  -->
+
     <!-- jquery  -->
     <script src="assets/js/jquery-3.5.1.min.js"></script>
     <!-- bootstrap -->
@@ -468,164 +261,75 @@
     <script src="assets/js/smooth-scroll.js"></script>
     <!-- custom js  -->
     <script src="main.js"></script>
-	
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const addToCartButtons = document.querySelectorAll('.dish-add-btn');
-        const cartItems = [];
-        const notification = document.getElementById('notification');
+
+    <script>
+        // Your JavaScript code goes here
+        // This script handles the shopping cart functionality
+
+        // Get the cart icon and popup
         const cartIcon = document.getElementById('cart-icon');
         const cartPopup = document.getElementById('cart-popup');
-        const whatsappBtn = document.getElementById('whatsapp-btn');
-        const cartCount = document.getElementById('cart-count');
+
+        // Display the cart popup when the cart icon is clicked
+        cartIcon.addEventListener('click', () => {
+            cartPopup.style.display = 'block';
+        });
+
+        // Get the close button for the cart popup
         const closeCartBtn = document.getElementById('close-cart-btn');
 
-        addToCartButtons.forEach(function(button) {
-            button.addEventListener('click', function() {
-                const dishBox = this.closest('.dish-box');
-                const dishTitle = dishBox.querySelector('.h3-title').textContent;
-                const dishPrice = parseFloat(dishBox.querySelector('.dist-bottom-row li:first-child b').textContent.replace('$', ''));
-                const item = { id: cartItems.length + 1, title: dishTitle, price: dishPrice, quantity: 1 };
-                cartItems.push(item);
-                updateCart();
-                displayNotification();
-            });
-        });
-
-        function updateCart() {
-            const cartList = document.getElementById('cart-items');
-            cartList.innerHTML = '';
-            cartItems.forEach(function(item) {
-                const li = document.createElement('li');
-                li.classList.add('cart-item');
-                const itemName = document.createElement('span');
-                itemName.classList.add('cart-item-name');
-                itemName.textContent = item.title;
-
-                const quantitySpan = document.createElement('span');
-                quantitySpan.classList.add('cart-item-quantity');
-                const quantity = document.createElement('span');
-                quantity.textContent = item.quantity;
-                const decButton = document.createElement('button');
-                decButton.textContent = '-';
-                decButton.classList.add('cart-item-button', 'dec-button');
-                decButton.addEventListener('click', function() {
-                    decreaseQuantity(item.id);
-                });
-                const incButton = document.createElement('button');
-                incButton.textContent = '+';
-                incButton.classList.add('cart-item-button', 'inc-button');
-                incButton.addEventListener('click', function() {
-                    increaseQuantity(item.id);
-                });
-
-                const priceSpan = document.createElement('span');
-                priceSpan.textContent = '$' + (item.price * item.quantity).toFixed(2); // Calculate and display price
-                priceSpan.classList.add('cart-item-price');
-
-                const deleteButton = document.createElement('button');
-                deleteButton.textContent = 'X';
-                deleteButton.classList.add('cart-item-button', 'delete-button');
-                deleteButton.addEventListener('click', function() {
-                    removeItemFromCart(item.id);
-                });
-
-                quantitySpan.appendChild(decButton);
-                quantitySpan.appendChild(quantity);
-                quantitySpan.appendChild(incButton);
-
-                li.appendChild(itemName);
-                li.appendChild(quantitySpan);
-                li.appendChild(priceSpan);
-                li.appendChild(deleteButton);
-
-                cartList.appendChild(li);
-            });
-            updateCartCount();
-        }
-
-        function displayNotification() {
-            notification.style.display = 'block';
-            setTimeout(function() {
-                notification.style.display = 'none';
-            }, 2000); // Hide notification after 2 seconds
-        }
-
-        function updateCartCount() {
-            cartCount.textContent = cartItems.length;
-            cartCount.style.display = cartItems.length > 0 ? 'block' : 'none';
-        }
-
-        function removeItemFromCart(itemId) {
-            const index = cartItems.findIndex(item => item.id === itemId);
-            if (index !== -1) {
-                cartItems.splice(index, 1);
-                updateCart();
-            }
-        }
-
-        function increaseQuantity(itemId) {
-            const item = cartItems.find(item => item.id === itemId);
-            if (item) {
-                item.quantity++;
-                updateCart();
-            }
-        }
-
-        function decreaseQuantity(itemId) {
-            const item = cartItems.find(item => item.id === itemId);
-            if (item && item.quantity > 1) {
-                item.quantity--;
-                updateCart();
-            }
-        }
-
-        cartIcon.addEventListener('click', function() {
-            toggleCartPopup();
-        });
-
-        whatsappBtn.addEventListener('click', function() {
-            sendCartToWhatsApp();
-        });
-
-        closeCartBtn.addEventListener('click', function() {
-            closeCartPopup();
-        });
-
-        function sendCartToWhatsApp() {
-            let message = "Shopping Cart:\n";
-            cartItems.forEach(function(item) {
-                const totalPrice = (item.price * item.quantity).toFixed(2); // Calculate total price
-                message += `- ${item.title} - Quantity: ${item.quantity} - $${totalPrice}\n`;
-            });
-            const whatsappLink = "https://wa.me/918850856825?text=" + encodeURIComponent(message);
-            window.open(whatsappLink);
-        }
-
-        function toggleCartPopup() {
-            cartPopup.style.display = cartPopup.style.display === 'block' ? 'none' : 'block';
-            centerCartPopup();
-        }
-
-        function closeCartPopup() {
+        // Close the cart popup when the close button is clicked
+        closeCartBtn.addEventListener('click', () => {
             cartPopup.style.display = 'none';
-        }
-
-        function centerCartPopup() {
-            const windowHeight = window.innerHeight;
-            const windowWidth = window.innerWidth;
-            const cartHeight = cartPopup.offsetHeight;
-            const cartWidth = cartPopup.offsetWidth;
-            const topPosition = (windowHeight - cartHeight) / 2;
-            const leftPosition = (windowWidth - cartWidth) / 2;
-            cartPopup.style.top = topPosition + 'px';
-            cartPopup.style.left = leftPosition + 'px';
-        }
-
-        window.addEventListener('resize', function() {
-            if (cartPopup.style.display === 'block') {
-                centerCartPopup();
-            }
         });
-    });
-</script>
+
+        // Add an item to the cart
+        function addToCart(name, price) {
+            const cartItems = document.getElementById('cart-items');
+            const cartCount = document.getElementById('cart-count');
+            const notification = document.getElementById('notification');
+
+            // Create a new cart item
+            const newItem = document.createElement('li');
+            newItem.className = 'cart-item';
+            newItem.innerHTML = `
+            <div class="cart-item-name">${name}</div>
+            <div class="cart-item-quantity">
+                <span class="quantity-label">Quantity:</span>
+                <button class="cart-item-button dec-button">-</button>
+                <span>1</span>
+                <button class="cart-item-button inc-button">+</button>
+            </div>
+            <div class="cart-item-buttons">
+                <button class="cart-item-button delete-button">Delete</button>
+            </div>
+            `;
+            cartItems.appendChild(newItem);
+
+            // Update the cart count
+            const itemCount = cartItems.children.length;
+            cartCount.textContent = itemCount;
+            cartCount.style.display = 'block';
+
+            // Show notification
+            notification.style.display = 'block';
+
+            // Hide notification after 2 seconds
+            setTimeout(() => {
+                notification.style.display = 'none';
+            }, 2000);
+        }
+
+        // Add to cart buttons
+        const addToCartButtons = document.querySelectorAll('.add-to-cart');
+        addToCartButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const name = button.getAttribute('data-name');
+                const price = parseFloat(button.getAttribute('data-price'));
+                addToCart(name, price);
+            });
+        });
+    </script>
+</body>
+
+</html>
