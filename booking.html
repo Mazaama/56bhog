@@ -131,11 +131,15 @@
 <body>
 <div class="content">
     <form method="post" action="" name="product" id="product">
-        <h1 style="text-align: center;">Reserve A Table</h1>
+        <h1 style="text-align: center;">Register</h1>
         <p style="text-align: center; font-size: 12px;"></p>
         <div style="text-align: center; margin-bottom: 20px;">
-            <img class="logo" src="https://i.ibb.co/BnG7Zrg/logo.png" alt="Restaurant Logo" style="max-width:60%;">
-            <p style="font-size: 14px;"><a href="https://maps.google.com/?q=227+Jln+Besar,+%2301-01,+Singapore+208904" target="_blank">🌏 227 Jln Besar, #01-01, Singapore 208904</a></p>
+             <div class="header-logo">
+                        <a href="index.html">
+                            <img src="https://i.ibb.co/HTHf2kQ/logo.png" width="270" height="72" alt="Logo">
+                        </a>
+                    </div>
+            <p style="font-size: 14px;"><a href="1, Talvali Rd, Gaon, Sector 21, Ghansoli Gaon, Ghansoli, Navi Mumbai, Maharashtra 400701" target="_blank">🌏 Shop no.1, Talvali Gaon, Sector 21, Ghansoli Navi Mumbai - 400701 </a></p>
 
         </div>
         <label for="name">Name</label>
@@ -150,16 +154,16 @@
         <label for="date">Date</label>
         <input type="date" name="date" required>
 
-        <label for="time">Time:</label>
+        <label for="time">Lunch Time:</label>
         <select id="time" name="time" required>
             <!-- JavaScript will populate options here -->
         </select>
 
-        <label for="party-size">Number of Guests</label>
+        <label for="party-size">Number of Thali</label>
         <input type="number" name="party_size" placeholder="Enter Party Size" required>
 
-        <label for="special-requests">Special Requests</label>
-        <textarea name="special_requests" id="special-requests" cols="30" rows="5" placeholder="Any Special Requests"></textarea>
+        <label for="special-requests">Address</label>
+        <textarea name="special_requests" id="special-requests" cols="30" rows="5" placeholder="Delivery Address"></textarea>
 
         <button type="submit">Submit Reservation</button>
 
